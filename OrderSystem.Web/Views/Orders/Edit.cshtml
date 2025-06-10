@@ -1,0 +1,51 @@
+@model OrderSystem.Domain.Models.OrderList
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Order Edit";
+    var selectedProducts = Model.ProductIds ?? new List<int>();
+}
+
+<h2>Order Edit</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="ClientId" class="form-label">Cliente</label>
+        <select asp-for="ClientId" asp-items="ViewBag.Clients" class="form-select" required>
+            <option value="">Selecione um cliente</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="OrderDate" class="form-label">Data do Pedido</label>
+        <input asp-for="OrderDate" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label">Status</label>
+        <input asp-for="Status" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Product</label>
+        <select asp-for="ProductIds" asp-items="ViewBag.Products" multiple class="form-select">
+        </select>
+        <span asp-validation-for="ProductIds" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label">Quantity</label>
+        <input asp-for="Quantity" class="form-control" type="number" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

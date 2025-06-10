@@ -1,0 +1,44 @@
+@model OrderSystem.Domain.Models.OrderList
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2>Order Details</h2>
+
+<div class="mb-3">
+    <label class="form-label">Client</label>
+    <input class="form-control" value="@Model.Client?.Name" readonly />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Order Date</label>
+    <input class="form-control" value="@Model.OrderDate.ToString("yyyy-MM-dd")" readonly />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Total Amount</label>
+    <input class="form-control" value="@Model.TotalAmount.ToString("F2")" readonly />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Product</label>
+    <ul class="list-group" readonly>
+        @foreach (var item in Model.Items)
+        {
+            <li class="list-group-item">@item.Product?.Name (@item.Quantity)</li>
+        }
+    </ul>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Quantity</label>
+    <input class="form-control" value="@Model.Quantity" readonly />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Status</label>
+    <input class="form-control" value="@Model.Status" readonly />
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

@@ -1,0 +1,30 @@
+@model OrderSystem.Domain.Models.Client
+
+@{
+    ViewData["Title"] = "Clients Details";
+}
+
+<h2>Clients Details</h2>
+
+<div class="border p-3 rounded">
+    <dl class="row">
+        <dt class="col-sm-2">ID</dt>
+        <dd class="col-sm-10">@Model.Id</dd>
+
+        <dt class="col-sm-2">Name</dt>
+        <dd class="col-sm-10">@Model.Name</dd>
+
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Phone</dt>
+        <dd class="col-sm-10">@Model.Phone</dd>
+
+        <dt class="col-sm-2">Registration Date</dt>
+        <dd class="col-sm-10">@Model.RegistrationDate</dd>
+    </dl>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">
+    <i class="bi bi-arrow-left-circle"></i> Back to list
+</a>

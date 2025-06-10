@@ -1,0 +1,55 @@
+@model OrderSystem.Domain.Models.Client
+
+@{
+    ViewData["Title"] = "New Client";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">New Customer</h2>
+
+    <form asp-action="Create" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="invalid-feedback">Please enter the name.</div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" type="email" required />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label">Phone</label>
+            <input asp-for="Phone" class="form-control" required pattern="^\+?[0-9\s\-]{7,15}$" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+            <div class="invalid-feedback">Please enter a valid phone number.</div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/Clients" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+
+    <script>
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+}

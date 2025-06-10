@@ -1,0 +1,55 @@
+@model OrderSystem.Domain.Models.Client
+
+@{
+    ViewData["Title"] = "Delete Client";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm border-danger">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0">Delete Client</h2>
+        </div>
+        <div class="card-body">
+            <p class="lead">Are you sure you want to delete this client?</p>
+
+            <dl class="row">
+                <dt class="col-sm-3">Client ID</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">Phone</dt>
+                <dd class="col-sm-9">@Model.Phone</dd>
+            </dl>
+
+            <form asp-action="DeleteConfirmed" method="post" id="deleteForm">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash3"></i> Yes, Delete
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <script>
+        $('#deleteForm').on('submit', function (e) {
+            if (!confirm("Are you sure you want to permanently delete this client?")) {
+                e.preventDefault();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,59 @@
+@model OrderSystem.Domain.Models.OrderList
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<h2>Create Order</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="ClientId" class="form-label">Client</label>
+        <select asp-for="ClientId" asp-items="ViewBag.Clients" class="form-select">
+            <option value="">Selecione um cliente</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="OrderDate" class="form-label">Order Date</label>
+        <input asp-for="OrderDate" class="form-control" type="date" />
+        <span asp-validation-for="OrderDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TotalAmount" class="form-label">Total Amount</label>
+        <input asp-for="TotalAmount" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Product</label>
+        <select asp-for="ProductIds" asp-items="ViewBag.Products" multiple class="form-select">
+        </select>
+        <span asp-validation-for="ProductIds" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input asp-for="Quantity" class="form-control"  type="number" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label"></label>
+        <input asp-for="Status" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+
+}

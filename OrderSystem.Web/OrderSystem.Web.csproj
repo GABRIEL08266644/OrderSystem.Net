@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderSystem.Application\OrderSystem.Application.csproj" />
+    <ProjectReference Include="..\OrderSystem.Domain\OrderSystem.Domain.csproj" />
+    <ProjectReference Include="..\OrderSystem.Infrastructure\OrderSystem.Infrastructure.csproj" />
+  </ItemGroup>
+
+    <ItemGroup>
+	    <None Update="Scripts\DatabaseSetup.sql">
+		    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	    </None>
+    </ItemGroup>
+
+</Project>

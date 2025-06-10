@@ -1,0 +1,32 @@
+@model OrderSystem.Domain.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Product Details</h2>
+
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input class="form-control" value="@Model.Name" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="3" readonly>@Model.Description</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Price</label>
+        <input class="form-control" value="@Model.Price.ToString("C")" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Stock Quantity</label>
+        <input class="form-control" value="@Model.StockQuantity" readonly />
+    </div>
+
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
